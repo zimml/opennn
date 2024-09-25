@@ -1,7 +1,7 @@
 //   OpenNN: Open Neural Networks Library
 //   www.opennn.net
 //
-//   Q U A S I - N E W T O N   M E T H O D    C L A S S   H E A D E R      
+//   Q U A S I - N E W T O N   M E T H O D    C L A S S   H E A D E R
 //
 //   Artificial Intelligence Techniques SL
 //   artelnics@artelnics.com
@@ -120,19 +120,19 @@ public:
 
    void update_parameters(const DataSetBatch& , NeuralNetworkForwardPropagation& , LossIndexBackPropagation& , QuasiNewtonMehtodData&) const;
 
-   TrainingResults perform_training() final;
+   TrainingResults perform_training(std::function<void(TrainingStep)> callback = nullptr) final;
 
    string write_optimization_algorithm_type() const final;
 
    // Serialization methods
-   
+
    void from_XML(const tinyxml2::XMLDocument&) final;
 
    void write_XML(tinyxml2::XMLPrinter&) const final;
-   
+
    Tensor<string, 2> to_string_matrix() const final;
 
-private: 
+private:
 
    /// Learning rate algorithm object.
    /// It calculates the step for a given training direction.

@@ -1,7 +1,7 @@
 //   OpenNN: Open Neural Networks Library
 //   www.opennn.net
 //
-//   O P T I M I Z A T I O N   A L G O R I T H M   C L A S S   H E A D E R 
+//   O P T I M I Z A T I O N   A L G O R I T H M   C L A S S   H E A D E R
 //
 //   Artificial Intelligence Techniques SL
 //   artelnics@artelnics.com
@@ -30,6 +30,13 @@ namespace opennn
 {
 
 struct TrainingResults;
+struct TrainingStep{
+	double trainingError = 0.;
+	double selectionError = 0.;
+	double learningRate = 0.;
+	double damping = 0.;
+	double time = 0.;
+};
 
 /// This abstract class represents the concept of optimization algorithm for a neural network in the OpenNN library.
 /// Any derived class must implement the perform_training() method.
@@ -99,9 +106,9 @@ public:
 
    virtual void check() const;
 
-   /// Trains a neural network which has a loss index associated. 
+   /// Trains a neural network which has a loss index associated.
 
-   virtual TrainingResults perform_training() = 0;
+   virtual TrainingResults perform_training(std::function<void(TrainingStep)> callback = nullptr) = 0;
 
    virtual string write_optimization_algorithm_type() const {return string();}
 

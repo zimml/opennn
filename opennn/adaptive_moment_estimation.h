@@ -51,17 +51,17 @@ struct AdaptiveMomentEstimationData;
 
 class AdaptiveMomentEstimation : public OptimizationAlgorithm
 {
-    
+
 public:
 
    // Constructors
 
    explicit AdaptiveMomentEstimation();
 
-   explicit AdaptiveMomentEstimation(LossIndex*);   
+   explicit AdaptiveMomentEstimation(LossIndex*);
 
    //virtual ~AdaptiveMomentEstimation();
-   
+
    // Training operators
 
    const type& get_initial_learning_rate() const;
@@ -104,7 +104,8 @@ public:
 
    // Training methods
 
-   TrainingResults perform_training() final;
+   TrainingResults perform_training(
+	   std::function<void(TrainingStep)> callback = nullptr) final;
 
    /// Return the algorithm optimum for your model.
 

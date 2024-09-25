@@ -101,7 +101,7 @@ public:
 
    void check() const final;
 
-   TrainingResults perform_training() final;
+   TrainingResults perform_training(std::function<void(TrainingStep)> callback = nullptr) final;
 
    void update_parameters(
            const DataSetBatch&,
@@ -114,11 +114,11 @@ public:
    // Serialization methods
 
    Tensor<string, 2> to_string_matrix() const final;
-   
+
    void from_XML(const tinyxml2::XMLDocument&) final;
 
    void write_XML(tinyxml2::XMLPrinter&) const final;
-   
+
 private:
 
    // MEMBERS
@@ -139,7 +139,7 @@ private:
 
    type damping_parameter_factor;
 
-   // Stopping criteria 
+   // Stopping criteria
 
    /// Minimum loss improvement between two successive iterations. It is a stopping criterion.
 

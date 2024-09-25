@@ -1,7 +1,7 @@
 //   OpenNN: Open Neural Networks Library
 //   www.opennn.net
 //
-//   T R A I N I N G   S T R A T E G Y   C L A S S   H E A D E R           
+//   T R A I N I N G   S T R A T E G Y   C L A S S   H E A D E R
 //
 //   Artificial Intelligence Techniques SL
 //   artelnics@artelnics.com
@@ -50,7 +50,7 @@ namespace opennn
 /// <ul>
 /// <li> Loss index.
 /// <li> Optimization algorithm.
-/// </ul> 
+/// </ul>
 
 class TrainingStrategy
 {
@@ -161,7 +161,7 @@ public:
 
     // Training methods
 
-    TrainingResults perform_training();
+    TrainingResults perform_training(std::function<void(TrainingStep)> callback = nullptr);
 
     // Check methods
 

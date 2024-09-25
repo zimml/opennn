@@ -47,7 +47,7 @@ public:
 
    // Constructors
 
-   explicit StochasticGradientDescent(); 
+   explicit StochasticGradientDescent();
 
    explicit StochasticGradientDescent(LossIndex*);
 
@@ -96,7 +96,7 @@ public:
 
    void update_parameters(LossIndexBackPropagation& , StochasticGradientDescentData&) const;
 
-   TrainingResults perform_training() final;
+   TrainingResults perform_training(std::function<void(TrainingStep)> callback = nullptr) final;
 
    string write_optimization_algorithm_type() const final;
 

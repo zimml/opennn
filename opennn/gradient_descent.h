@@ -51,7 +51,7 @@ public:
 
    // Constructors
 
-   explicit GradientDescent(); 
+   explicit GradientDescent();
 
    explicit GradientDescent(LossIndex*);
 
@@ -60,7 +60,7 @@ public:
 
    virtual string get_hardware_use() const;
 
-   // Stopping criteria   
+   // Stopping criteria
 
    const type& get_minimum_loss_decrease() const;
    const type& get_loss_goal() const;
@@ -99,7 +99,7 @@ public:
            LossIndexBackPropagation&,
            GradientDescentData&) const;
 
-   TrainingResults perform_training() final;
+   TrainingResults perform_training(std::function<void(TrainingStep)> callback = nullptr) final;
 
    string write_optimization_algorithm_type() const final;
 
@@ -115,13 +115,13 @@ private:
 
    // TRAINING OPERATORS
 
-   /// Learning rate algorithm object for one-dimensional minimization. 
+   /// Learning rate algorithm object for one-dimensional minimization.
 
    LearningRateAlgorithm learning_rate_algorithm;
 
    const type first_learning_rate = static_cast<type>(0.01);
 
-   // Stopping criteria 
+   // Stopping criteria
 
    /// Minimum loss improvement between two successive iterations. It is a stopping criterion.
 

@@ -55,9 +55,9 @@ public:
 
    // DEFAULT CONSTRUCTOR
 
-   explicit ConjugateGradient(); 
+   explicit ConjugateGradient();
 
-   explicit ConjugateGradient(LossIndex*);   
+   explicit ConjugateGradient(LossIndex*);
 
    // Get methods
 
@@ -71,7 +71,7 @@ public:
 
    // Stopping criteria
 
-   
+
 
    const type& get_minimum_loss_decrease() const;
    const type& get_loss_goal() const;
@@ -94,7 +94,7 @@ public:
 
    // Stopping criteria
 
-   
+
 
    void set_loss_goal(const type&);
    void set_minimum_loss_decrease(const type&);
@@ -125,7 +125,7 @@ public:
 
    // Training methods
 
-   TrainingResults perform_training() final;
+   TrainingResults perform_training(std::function<void(TrainingStep)> callback = nullptr) final;
 
    string write_optimization_algorithm_type() const final;
 
@@ -151,7 +151,7 @@ private:
 
    TrainingDirectionMethod training_direction_method = ConjugateGradient::TrainingDirectionMethod::FR;
 
-   /// Learning rate algorithm object for one-dimensional minimization. 
+   /// Learning rate algorithm object for one-dimensional minimization.
 
    LearningRateAlgorithm learning_rate_algorithm;
 
@@ -192,7 +192,7 @@ struct ConjugateGradientData : public OptimizationAlgorithmData
 
     virtual void print() const;
 
-    ConjugateGradient* conjugate_gradient_pointer = nullptr;  
+    ConjugateGradient* conjugate_gradient_pointer = nullptr;
 
     Tensor<type, 1> parameters_increment;
 
